@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mossm / my own simple state management</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+  </head>
+  <body>
+    <style>
+
+      body {
+        background: #f1f1f1;
+        font-family: 'Roboto', sans-serif;
+      }
+
+      todo-app {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        width: 50%;
+        padding:20px;
+        background: #fff;
+      }
+
+
+      todo {
+        display: flex;
+        border-bottom: 1px solid #f1f1f1;
+        cursor: pointer;
+      }
+      todo p {flex:1}
+    </style>
+    <todo-app>
+      <h1>Todo</h1>
+      <todo-form>
+        <input type="text"></input>
+        <button>Add</button>
+      </todo-form>
+      <todo-filter>
+        <span>
+          <input name="filter" id="filter_all" type="radio" value="all">
+          <label for="filter_all">all</label>
+        </span>
+        <span>
+          <input name="filter" id="filter_finished" type="radio" value="finished">
+          <label for="filter_finished">finished</label>
+        </span>
+        <span>
+          <input name="filter" id="filter_unfinished" type="radio" value="unfinished">
+          <label for="filter_unfinished">unfinished</label>
+        </span>
+      </todo-filter>
+      <todo-list></todo-list>
+    </todo-app>
+    <script src="exampleApp.js"></script>
+  </body>
+</html>

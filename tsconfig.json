@@ -1,0 +1,13 @@
+{
+    "baseUrl": "src",
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "noImplicitAny": true,
+        "module": "es6",
+        "target": "es6",
+        "experimentalDecorators": true,
+        "moduleResolution" : "node",
+        "sourceMap": true,
+        "declaration": true,
+    }
+}
