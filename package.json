@@ -1,6 +1,6 @@
 {
-  "name": "jasml",
-  "version": "1.0.0",
+  "name": "mossm",
+  "version": "0.0.1",
   "description": "just another state management library",
   "private": true,
   "scripts": {
