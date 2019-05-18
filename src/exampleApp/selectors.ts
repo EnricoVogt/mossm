@@ -10,7 +10,6 @@ const filterSelector = (x: any) => {
 
 export const filterCompleted = createSelector(
     (filter: any) => {
-        console.log(filter, '<<<<');
         return filter.completed;
     },
     filterSelector,
