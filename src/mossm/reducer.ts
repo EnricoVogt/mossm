@@ -12,7 +12,7 @@ export class Reducer {
                 }
             }
             return state;
-        }
+        };
         return reduce.bind(this);
     }
 }
