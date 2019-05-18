@@ -5,7 +5,6 @@ import { Reducer } from '../../mossm/reducer';
 export class TodoReducer extends Reducer {
     @forAction('addTodos')
     public addTodos(state: any, action: IAction) {
-        console.log(state, action);
         return action.payload;
     }
 
