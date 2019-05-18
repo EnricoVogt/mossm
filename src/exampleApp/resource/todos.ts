@@ -5,19 +5,19 @@ export const sampleTodos: ITodo[] = [
         id: 1,
         category: ['webdev', 'development'],
         completed: false,
-        todo: 'Create a simple tool to manage your application state',
+        todo: 'create a simple tool to manage your application state',
     },
     {
         id: 2,
         category: ['development'],
         completed: false,
-        todo: 'Create cardapp',
+        todo: 'create cardapp',
     },
     {
         id: 3,
         category: ['social'],
         completed: true,
-        todo: 'write a email to josh',
+        todo: 'write an email to josh',
     },
     {
         id: 4,
