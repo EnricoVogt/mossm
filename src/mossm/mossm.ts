@@ -6,7 +6,7 @@ import { IEffect } from './interfaces/effect';
 import { IReducerMap } from './interfaces/reducer-map';
 
 import { Store } from './store';
-import { Reducer } from './types/reducer';
+import { reduceFn } from './types/reducer';
 
 import { createSelector } from './create-selector';
 
@@ -14,7 +14,7 @@ export {
     IAction,
     IEffect,
     IReducerMap,
-    Reducer,
+    reduceFn,
     Store,
     Effects,
     createSelector,

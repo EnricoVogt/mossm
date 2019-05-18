@@ -1,5 +1,5 @@
-import { Reducer } from '../types/reducer';
+import { reduceFn } from '../types/reducer';
 
 export interface IReducerMap {
-    [key: string]: Reducer;
+    [key: string]: reduceFn;
 }
