@@ -1,6 +1,6 @@
 
 import { BehaviorSubject, Subject } from 'rxjs';
-import { distinctUntilChanged, map, concatMap, mergeMap, tap } from 'rxjs/operators';
+import { concatMap, distinctUntilChanged, map, mergeMap } from 'rxjs/operators';
 import { IAction } from './interfaces/action';
 import { IReducerMap } from './interfaces/reducer-map';
 import { Effects } from './mossm';
