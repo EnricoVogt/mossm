@@ -7,6 +7,8 @@ const fakeHttpClient = (expectedResponse: any) => {
     return of(expectedResponse).pipe(delay(250));
 };
 
+let id = 4;
+
 export class TodoService {
 
     public static getTodos() {
@@ -14,8 +16,9 @@ export class TodoService {
     }
 
     public static addTodo(todo: any) {
+        id++;
         return fakeHttpClient({
-            id: 999,
+            id,
             category: [],
             completed: false,
             todo,
