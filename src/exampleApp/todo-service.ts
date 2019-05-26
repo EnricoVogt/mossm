@@ -4,7 +4,7 @@ import { sampleTodos } from './resource/todos';
 
 const fakeHttpClient = (expectedResponse: any) => {
     // return throwError("Error");
-    return of(expectedResponse).pipe(delay(1000));
+    return of(expectedResponse).pipe(delay(250));
 };
 
 export class TodoService {

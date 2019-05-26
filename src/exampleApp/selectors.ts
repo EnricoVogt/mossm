@@ -8,6 +8,10 @@ const filterSelector = (x: any) => {
     return x.todoFilter;
 };
 
+export const loadingSelector = (x: any) => {
+    return x.loading;
+};
+
 export const filterCompleted = createSelector(
     (filter: any) => {
         return filter.completed;

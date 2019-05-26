@@ -3,7 +3,7 @@ import { addTodoAction, getTodosAction, setFilterAction, updateTodoAction } from
 import { TodoEffects } from './effects/todo-effects';
 import { ITodo } from './interfaces/todo';
 import { reducers } from './reducers';
-import { filterCompleted, filteredTodosState } from './selectors';
+import { filterCompleted, filteredTodosState, loadingSelector } from './selectors';
 
 class TodoApplication {
 
@@ -22,6 +22,12 @@ class TodoApplication {
         this.todoAddForm = this.todoAppContainer.querySelector('todo-form');
 
         this.addEventListeners();
+
+        const loadingState: HTMLElement = this.todoAppContainer.querySelector('.loading-state');
+        this.store.select(loadingSelector).subscribe((x: any) => {
+            loadingState.textContent = x;
+            loadingState.style.color = (x) ? 'red' : 'green';
+        });
 
         this.store.select(filteredTodosState).subscribe((x: any) => {
             this.renderList(x);
