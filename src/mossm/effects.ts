@@ -1,5 +1,4 @@
 import { from, of } from 'rxjs';
-import { delay, map, mergeMap } from 'rxjs/operators';
 import { IAction } from './interfaces/action';
 import { IEffect } from './mossm';
 
