@@ -1,8 +1,9 @@
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { sampleTodos } from './resource/todos';
 
 const fakeHttpClient = (expectedResponse: any) => {
+    //return throwError("Error");
     return of(expectedResponse).pipe(delay(1000));
 };
 

@@ -2,6 +2,7 @@ import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { forAction } from '../../mossm/decorators/for-action';
 import { TodoService } from '../todo-service';
+import { getTodosSuccessAction, addTodoSuccessAction, updateTodoSuccessAction, updateTodoFailureAction, getTodosFailureAction, addTodoFailureAction } from '../actions/actions';
 
 export class TodoEffects {
 
@@ -11,9 +12,9 @@ export class TodoEffects {
             mergeMap((action: any) => {
                 return TodoService.addTodo(action.payload).pipe(
                     map((x) => {
-                        return { type: 'addTodoSuccess', payload: x };
+                        return addTodoSuccessAction(x);
                     }),
-                    catchError((error) => of(error)),
+                    catchError((error) => of(addTodoFailureAction(error))),
                 );
             }),
         );
@@ -25,9 +26,9 @@ export class TodoEffects {
             mergeMap((action: any) => {
                 return TodoService.getTodos().pipe(
                     map((x) => {
-                        return { type: 'getTodosSuccess', payload: x };
+                        return getTodosSuccessAction(x);
                     }),
-                    catchError((error) => of(error)),
+                    catchError((error) => of(getTodosFailureAction(error))),
                 );
             }),
         );
@@ -39,9 +40,9 @@ export class TodoEffects {
             mergeMap((action: any) => {
                 return TodoService.updateTodo(action.payload).pipe(
                     map((x) => {
-                        return { type: 'updateTodoSuccess', payload: x };
+                        return updateTodoSuccessAction(x);
                     }),
-                    catchError((error) => of(error)),
+                    catchError((error) => of(updateTodoFailureAction(error))),
                 );
             }),
         );

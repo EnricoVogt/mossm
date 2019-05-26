@@ -2,8 +2,8 @@ import { Store  } from '../mossm/mossm';
 import { TodoEffects } from './effects/todo-effects';
 import { ITodo } from './interfaces/todo';
 import { reducers } from './reducers';
-import { sampleTodos } from './resource/todos';
 import { filterCompleted, filteredTodosState } from './selectors';
+import { getTodosAction, addTodoAction, setFilterAction, updateTodoAction } from './actions/actions';
 
 class TodoApplication {
 
@@ -41,7 +41,7 @@ class TodoApplication {
             radio.setAttribute('checked', 'checked');
         });
 
-        this.store.dispatch({ type: 'getTodos' });
+        this.store.dispatch(getTodosAction());
     }
 
     private addEventListeners() {
@@ -87,7 +87,7 @@ class TodoApplication {
         const inputValue = this.todoAddForm.querySelector('input').value;
         if (inputValue !== '') {
             this.todoAddForm.querySelector('input').value = '';
-            this.store.dispatch({ type: 'addTodo', payload: inputValue });
+            this.store.dispatch(addTodoAction(inputValue));
         }
     }
 
@@ -106,12 +106,12 @@ class TodoApplication {
             completed = false;
         }
 
-        this.store.dispatch({ type: 'setFilter', payload: { completed }});
+        this.store.dispatch(setFilterAction({ completed }));
     }
 
     private checkedHandler(todo: ITodo) {
         return (event: any) => {
-            this.store.dispatch({ type: 'updateTodo', payload: todo});
+            this.store.dispatch(updateTodoAction(todo));
         };
     }
 }
