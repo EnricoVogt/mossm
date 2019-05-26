@@ -1,9 +1,9 @@
 import { Store  } from '../mossm/mossm';
+import { addTodoAction, getTodosAction, setFilterAction, updateTodoAction } from './actions/actions';
 import { TodoEffects } from './effects/todo-effects';
 import { ITodo } from './interfaces/todo';
 import { reducers } from './reducers';
 import { filterCompleted, filteredTodosState } from './selectors';
-import { getTodosAction, addTodoAction, setFilterAction, updateTodoAction } from './actions/actions';
 
 class TodoApplication {
 
