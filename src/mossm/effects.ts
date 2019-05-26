@@ -1,46 +1,31 @@
 import { from, of } from 'rxjs';
+import { delay, map, mergeMap } from 'rxjs/operators';
 import { IAction } from './interfaces/action';
-import { IEffect } from './interfaces/effect';
+import { IEffect } from './mossm';
 
 export class Effects {
     private effects: IEffect[] = [];
 
-    public set(effect: IEffect) {
-        this.effects.push(effect);
+    constructor(effectClasses: any) {
+        effectClasses.forEach((effectClass: any) => {
+            effectClass = effectClass.prototype;
+            for (const key in effectClass) {
+                if (effectClass.hasOwnProperty(key) && effectClass[key].forAction) {
+                    const effectFn = effectClass[key];
+                    this.effects.push(effectFn);
+                }
+            }
+        });
     }
 
     public get(action: IAction) {
         const effects = this.effects
-            .filter((effect) => effect.forAction === action.type)
-            .map((x) => x.effect(of(action)));
+            .filter((effect) => {
+                return effect.forAction === action.type;
+            })
+            .map((effectFn) => {
+                return effectFn(of(action));
+            });
         return from([of(action), ...effects]);
     }
 }
-
-/*
-const effectsFn = {
-    effect: (actionStream: any) => {
-        return actionStream.pipe(
-            map((action) => {
-                return { type: 'xyzActionSuccess1', payload: { substate: { a: false, b: false } } };
-            }),
-        );
-    },
-    forAction: 'xyzAction',
-};
-
-const effectsFn1 = {
-    effect: (actionStream: any) => {
-        return actionStream.pipe(
-            map((action) => {
-                return { type: 'xyzActionSuccess11', payload: { substate: { a: false, b: false } } };
-            }),
-        );
-    },
-    forAction: 'xyzAction',
-};
-
-//store.effects.set(effectsFn);
-//store.effects.set(effectsFn1);
-
-*/

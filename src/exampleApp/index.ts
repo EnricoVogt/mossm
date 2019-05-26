@@ -1,4 +1,5 @@
 import { Store  } from '../mossm/mossm';
+import { TodoEffects } from './effects/todo-effects';
 import { ITodo } from './interfaces/todo';
 import { reducers } from './reducers';
 import { sampleTodos } from './resource/todos';
@@ -14,7 +15,7 @@ class TodoApplication {
     private store: Store;
 
     constructor(selector: string) {
-        this.store = new Store(reducers);
+        this.store = new Store(reducers, [TodoEffects]);
         this.todoAppContainer = document.querySelector(selector);
         this.todoList = this.todoAppContainer.querySelector('todo-list');
         this.todoFilter = this.todoAppContainer.querySelector('todo-filter');

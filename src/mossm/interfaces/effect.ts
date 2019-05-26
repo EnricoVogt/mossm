@@ -1,4 +1,4 @@
 export interface IEffect {
     forAction: string;
-    effect: any;
+    (actionStream: any): any;
 }
