@@ -21,23 +21,7 @@ class TodoApplication {
         this.todoFilter = this.todoAppContainer.querySelector('todo-filter');
         this.todoAddForm = this.todoAppContainer.querySelector('todo-form');
 
-        this.todoAddForm.querySelector('button').addEventListener('click', () => {
-            const inputValue = this.todoAddForm.querySelector('input').value;
-            if (inputValue !== '') {
-                this.todoAddForm.querySelector('input').value = '';
-                this.store.dispatch({ type: 'addTodo', payload: {
-                    id: 999,
-                    category: [],
-                    completed: false,
-                    todo: inputValue,
-                }});
-            }
-        });
-
-        this.filterRadios = Array.from(this.todoFilter.querySelectorAll('input[name=filter]'));
-        this.filterRadios.forEach((radio) => {
-            radio.addEventListener('change', this.filterHandler.bind(this));
-        });
+        this.addEventListeners();
 
         this.store.select(filteredTodosState).subscribe((x: any) => {
             this.renderList(x);
@@ -57,7 +41,16 @@ class TodoApplication {
             radio.setAttribute('checked', 'checked');
         });
 
-        this.store.dispatch({ type: 'addTodos', payload: sampleTodos});
+        this.store.dispatch({ type: 'getTodos' });
+    }
+
+    private addEventListeners() {
+        this.todoAddForm.querySelector('button').addEventListener('click', this.addTodoHandler.bind(this));
+
+        this.filterRadios = Array.from(this.todoFilter.querySelectorAll('input[name=filter]'));
+        this.filterRadios.forEach((radio) => {
+            radio.addEventListener('change', this.filterHandler.bind(this));
+        });
     }
 
     private renderList(todos: any) {
@@ -90,6 +83,18 @@ class TodoApplication {
         });
     }
 
+    private addTodoHandler() {
+        const inputValue = this.todoAddForm.querySelector('input').value;
+        if (inputValue !== '') {
+            this.todoAddForm.querySelector('input').value = '';
+            this.store.dispatch({ type: 'addTodo', payload: inputValue });
+        }
+    }
+
+    private filterHandler(event: any) {
+        this.setFilter(event.target.value);
+    }
+
     private setFilter(filter: any) {
         let completed: boolean = null;
 
@@ -104,13 +109,8 @@ class TodoApplication {
         this.store.dispatch({ type: 'setFilter', payload: { completed }});
     }
 
-    private filterHandler(event: any) {
-        this.setFilter(event.target.value);
-    }
-
     private checkedHandler(todo: ITodo) {
         return (event: any) => {
-            todo.completed = !todo.completed;
             this.store.dispatch({ type: 'updateTodo', payload: todo});
         };
     }
