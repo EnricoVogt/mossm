@@ -12,13 +12,13 @@
   },
   "author": "Enrico Vogt",
   "devDependencies": {
-    "copy-webpack-plugin": "^5.0.2",
-    "ts-loader": "^5.4.3",
+    "copy-webpack-plugin": "^11.0.0",
+    "ts-loader": "^9.4.2",
     "tslint": "^5.16.0",
     "tslint-webpack-plugin": "^2.0.4",
     "typescript": "^3.4.5",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
